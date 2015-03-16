@@ -25,6 +25,8 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 
 gem 'devise'
 
+gem 'acts-as-taggable-on'
+
 gem "therubyracer"
 gem "less-rails"
 gem "twitter-bootstrap-rails"
