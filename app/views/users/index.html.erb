@@ -1,0 +1,18 @@
+<table class="table table-bordered">
+  <caption>Список всех пользователей</caption>
+  <thead>
+    <tr>
+      <td>Электронная почта</td>
+      <td>Колличество текущих проектов</td>
+    </tr>
+  </thead>
+  <tbody>
+    <% @users.each do |u| %>
+      <tr>
+        <td><%= u.email %></td>
+        <td><%= u.projects ? u.projects.count : 0 %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+<p><%= link_to 'Новый пользователь', new_user_path, class: 'btn' if current_user.admin %></p>
