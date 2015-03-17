@@ -1,5 +1,5 @@
 <table class="table table-bordered">
-  <caption>Список всех карточек</caption>
+  <caption>Список всех проектов</caption>
   <thead>
     <tr>
       <td>Номер проекта</td>
@@ -12,7 +12,7 @@
     <% @projects.each do |p| %>
       <tr>
         <td><%= p.id %></td>
-        <td><%= p.name %></td>
+        <td><%= link_to p.name, project_path(p) %></td>
         <td><%= p.owner.email %></td>
         <td>
           <%= link_to 'Редактировать', edit_project_path(p) %>

@@ -1,5 +1,29 @@
 <h2>Проект номер <%= @project.id %> </h2>
 <p> Название: <%= @project.name  %></p>
 <p> Описание: <%= @project.describe  %></p>
-<p> Владелец: <%= @project.owner.email  %></p>
-<p> <%= link_to 'All projects', projects_path %></p>
+<p> Ответственный: <%= @project.owner.email  %></p>
+<table class="table table-bordered">
+  <caption>Список задач по проекту</caption>
+  <thead>
+    <tr>
+      <td>Номер задачи</td>
+      <td>Название задачи</td>
+      <td>Описание задачи</td>
+      <td>Исполнитель</td>
+      <td>Назначивший</td>
+      <td>Действия</td>
+    </tr>
+  </thead>
+  <tbody>
+    <% @project.tasks.each do |t| %>
+      <tr>
+        <td><%= t.id %></td>
+        <td><%= t.title %></td>
+        <td><%= t.describe %></td>
+        <td><%= t.executor.email %></td>
+        <td><%= t.assigner.email %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+<p><%= link_to 'Новая задача', new_project_task_path(@project), class: 'btn' %></p>
