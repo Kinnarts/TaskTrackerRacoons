@@ -1,0 +1,6 @@
+<%= simple_form_for @project do |f| %>
+  <%= f.input :name, label: 'Оригинальный текст' %>
+  <%= f.input :describe, label: 'Перевод' %>
+  <%= f.association :owner, collecion: User.all, label: 'Выберите ответственного за проект' %>
+  <%= f.button :submit %>
+<% end %>

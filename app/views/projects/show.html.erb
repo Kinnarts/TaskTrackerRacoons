@@ -1,0 +1,5 @@
+<h2>Проект номер <%= @project.id %> </h2>
+<p> Название: <%= @project.name  %></p>
+<p> Описание: <%= @project.describe  %></p>
+<p> Владелец: <%= @project.owner.email  %></p>
+<p> <%= link_to 'All projects', projects_path %></p>
