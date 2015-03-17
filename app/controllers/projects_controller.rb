@@ -1,5 +1,6 @@
 class ProjectsController < ApplicationController
   before_action :find_project, only: [:show, :edit, :update, :destroy]
+  before_action :authorize_admin, only: [:new, :create]
 
   def index
     @projects = if current_user.admin?
@@ -52,6 +53,10 @@ class ProjectsController < ApplicationController
   end
 
   def project_params
-    params.require(:project). permit(:name, :describe, :owner_id)
+    params.require(:project). permit(:name, :describe, :owner_id, tasks_attributes: task_params)
+  end
+
+  def task_params
+    [:title, :describe, :executor_id]
   end
 end

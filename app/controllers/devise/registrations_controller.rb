@@ -18,7 +18,7 @@ class Devise::RegistrationsController < DeviseController
     yield resource if block_given?
     if resource.persisted?
       if current_user
-        respond_with resource, location: after_inactive_sign_up_path_for(resource)
+        redirect_to users_path
       elsif resource.active_for_authentication?
         set_flash_message :notice, :signed_up if is_flashing_format?
         sign_up(resource_name, resource)
