@@ -19,7 +19,7 @@ class ProjectsController < ApplicationController
 
   def create
     @project = Project.new(project_params)
-    if @project.save
+    if @project.save!
       redirect_to projects_path
     else
       render :new
@@ -57,6 +57,6 @@ class ProjectsController < ApplicationController
   end
 
   def task_params
-    [:title, :describe, :executor_id]
+    [:id, :title, :describe, :executor_id, :assigner_id, :_destroy]
   end
 end
