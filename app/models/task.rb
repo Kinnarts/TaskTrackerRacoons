@@ -4,6 +4,7 @@ class Task < ActiveRecord::Base
   belongs_to :project
   acts_as_taggable
   validates_presence_of :title, :describe, :executor, :assigner
+  scope :state, -> (word){ where('state LIKE :w', w: "%#{word}%") if word.present?}
   state_machine initial: :created do
     state :working
     state :for_test

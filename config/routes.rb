@@ -7,6 +7,7 @@ Rails.application.routes.draw do
     resources :tasks
   end
   post "set_state_event" => "tasks#set_state_event"
+  get "tasks" => "tasks#index"
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

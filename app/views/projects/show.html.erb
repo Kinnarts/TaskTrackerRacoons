@@ -2,42 +2,43 @@
 <p> Название: <%= @project.name  %></p>
 <p> Описание: <%= @project.describe  %></p>
 <p> Ответственный: <%= @project.owner.email  %></p>
-<table class="table table-bordered">
-  <caption>Список задач по проекту</caption>
-  <thead>
-    <tr>
-      <td>Номер задачи</td>
-      <td>Название задачи</td>
-      <td>Описание задачи</td>
-      <td>Исполнитель</td>
-      <td>Назначивший</td>
-      <td>Текущий статус и его изменение</td>
-      <td>Действия</td>
-    </tr>
-  </thead>
-  <tbody>
-    <% @project.tasks.each do |task| %>
-      <tr>
-        <td><%= task.id %></td>
-        <td><%= link_to task.title, project_task_path(@project, task) %></td>
-        <td><%= task.describe %></td>
-        <td><%= task.executor.email %></td>
-        <td><%= task.assigner.email %></td>
-        <td>
-          <h4>"<%= task.state %>"</h4></br>
-          <%= form_tag set_state_event_path do %>
-            <%= label_tag("Выберите действие") %>
-            <%= select_tag :state_event, options_for_select(task.state_events(&:to_s)) %>
-            <%= hidden_field_tag :id, task.id %>
-            <button>Изменить</button>
-          <% end %>
-        <td>
-          <%= link_to 'Редактировать', edit_project_task_path(@project, task) %>
-          |
-          <%= link_to 'Удалить', project_task_path(@project, task), method: :delete, data: { confirm: 'Вы уверены?' } %>
-        </td>
-      </tr>
+<h2 class="text-center">Задачи</h2>
+<div class="row"> 
+  <div class="col-md-2">
+    <h4 class="text-center">Созданные</h4>
+    <% @project.tasks.state("created").each do |task| %>
+      <%= render 'task', task: task %>
     <% end %>
-  </tbody>
-</table>
+  </div>
+  <div class="col-md-2">
+    <h4 class="text-center">В работе</h4>
+    <% @project.tasks.state("working").each do |task| %>
+      <%= render 'task', task: task %>
+    <% end %>
+  </div>
+  <div class="col-md-2">
+    <h4 class="text-center">Готовы для тестирования</h4>
+    <% @project.tasks.state("for_test").each do |task| %>
+      <%= render 'task', task: task %>
+    <% end %>
+  </div>
+  <div class="col-md-2">
+    <h4 class="text-center">В тестировании</h4>
+    <% @project.tasks.state("testing").each do |task| %>
+      <%= render 'task', task: task %>
+    <% end %>
+  </div>
+  <div class="col-md-2">
+    <h4 class="text-center">Для доработки</h4>
+    <% @project.tasks.state("for_fix").each do |task| %>
+      <%= render 'task', task: task %>
+    <% end %>
+  </div>
+  <div class="col-md-2">
+    <h4 class="text-center">Законченные</h4>
+    <% @project.tasks.state("finished").each do |task| %>
+      <%= render 'task', task: task %>
+    <% end %>
+  </div>
+</div>
 <p><%= link_to 'Новая задача', new_project_task_path(@project), class: 'btn' %></p>

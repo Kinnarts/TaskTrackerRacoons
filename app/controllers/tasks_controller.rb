@@ -1,9 +1,8 @@
 class TasksController < ApplicationController
-  before_action :find_project, only: [:index, :show, :edit, :create, :update, :destroy]
+  before_action :find_project, only: [:show, :edit, :create, :update, :destroy]
   before_action :find_task, only: [:show, :edit, :update, :destroy, :set_state_event]
 
   def index
-    @tasks = @project.tasks
   end
 
   def edit
@@ -27,7 +26,7 @@ class TasksController < ApplicationController
   def set_state_event
     @task.state_event = params[:state_event]
     @task.save
-    redirect_to project_path(@task.project)
+    redirect_to :back
   end
 
   def create

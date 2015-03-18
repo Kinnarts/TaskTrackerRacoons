@@ -1,0 +1,17 @@
+<div class="panel panel-default">
+  <div class="panel-heading">
+    <h4 class="text-center"><%= task.title %></h4>
+  </div>
+  <div class="panel-body">
+    <p><%= task.describe %></p>
+    <%= link_to 'Редактировать', edit_project_task_path(@project, task) %>
+    |
+    <%= link_to 'Удалить', project_task_path(@project, task), method: :delete, data: { confirm: 'Вы уверены?' } %>
+    <p><%= form_tag set_state_event_path do %>
+      <%= label_tag("Выберите действие") %>
+      <%= select_tag :state_event, options_for_select(task.state_events(&:to_s)) %>
+      <%= hidden_field_tag :id, task.id %>
+      <button>Изменить</button>
+    <% end %></p>
+  </div>
+</div>
