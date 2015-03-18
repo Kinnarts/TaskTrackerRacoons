@@ -25,6 +25,7 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 
 gem 'devise'
 gem 'activeadmin', github: 'activeadmin'
+gem 'faker'
 
 gem 'acts-as-taggable-on'
 gem 'state_machine'
@@ -60,5 +61,8 @@ group :test do
   gem 'database_cleaner'
   gem 'shoulda-matchers'
   gem 'factory_girl_rails'
-  gem 'faker'
+end
+
+group :production do
+  gem 'rails_12factor'
 end
