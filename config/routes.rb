@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
 
+  ActiveAdmin.routes(self)
   devise_for :users
   resources :users, except: :create
   post 'create_user' => 'users#create', as: :create_user
