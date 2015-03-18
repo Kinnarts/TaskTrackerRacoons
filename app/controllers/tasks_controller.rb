@@ -1,5 +1,5 @@
 class TasksController < ApplicationController
-  before_action :find_project, only: [:show, :edit, :create, :update, :destroy]
+  before_action :find_project, only: [:new, :show, :edit, :create, :update, :destroy]
   before_action :find_task, only: [:show, :edit, :update, :destroy, :set_state_event]
 
   def index
@@ -20,7 +20,6 @@ class TasksController < ApplicationController
   end
 
   def new
-    @task = Task.new
   end
 
   def set_state_event
@@ -47,7 +46,7 @@ class TasksController < ApplicationController
   private
 
   def task_params
-    params.require(:task).permit(:title, :describe, :executor_id, :assigner_id, :tag_list => [])
+    params.require(:task).permit(:title, :describe, :executor_id, :assigner_id, :tag_list)
   end
 
   def find_project

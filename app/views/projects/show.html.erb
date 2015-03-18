@@ -41,4 +41,4 @@
     <% end %>
   </div>
 </div>
-<p><%= link_to 'Новая задача', new_project_task_path(@project), class: 'btn' %></p>
+<p><%= link_to 'Новая задача', new_project_task_path(@project, @project.tasks.build), class: 'btn' %></p>

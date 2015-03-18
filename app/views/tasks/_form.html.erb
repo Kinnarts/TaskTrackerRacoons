@@ -1,6 +1,7 @@
-<%= simple_form_for @task, url: project_tasks_path do |f| %>
+<%= simple_form_for [project, task] do |f| %>
   <%= f.input :title, label: 'Название задачи' %>
   <%= f.input :describe, as: :text, label: 'Описание задачи' %>
+  <%= f.input :tag_list, label: 'Теги (разделите запятыми)' %>
   <%= f.association :executor, label_method: :email, label: 'Выберите исполнителя' %>
   <%= f.hidden_field :assigner_id, value: current_user.id %>
   <%= f.button :submit %>
