@@ -8,6 +8,7 @@
       <%= task_form.input :describe, as: :text, label: 'Описание задачи' %>
       <%= task_form.association :executor, label_method: :email, label: 'Выберите исполнителя' %>
       <%= task_form.hidden_field :assigner_id, value: current_user.id %>
+      <%= task_form.hidden_field :state, value: "created" %>
       <%= task_form.link_to_remove "Удалить эту задачу" %>
     <% end %>
   <% end %>

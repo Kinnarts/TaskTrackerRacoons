@@ -4,8 +4,10 @@ Rails.application.routes.draw do
   resources :users, except: :create
   post 'create_user' => 'users#create', as: :create_user
   resources :projects do
-    resources :tasks, only: [:index, :new, :create]
+    resources :tasks, except: [:index]
   end
+  post "set_state_event" => "tasks#set_state_event"
+  get "tasks" => "tasks#index"
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
