@@ -1,0 +1,16 @@
+<%= simple_nested_form_for @project do |f| %>
+  <%= f.input :name, label: 'Название' %>
+  <%= f.input :describe, label: 'Описание' %>
+  <%= f.association :owner, label_method: :email, collection: User.all, label: 'Выберите ответственного за проект' %>
+  <%= f.fields_for :tasks do |task_form| %>
+    <% if task_form.object.new_record? %>
+      <%= task_form.input :title, label: 'Название задачи' %>
+      <%= task_form.input :describe, as: :text, label: 'Описание задачи' %>
+      <%= task_form.association :executor, label_method: :email, label: 'Выберите исполнителя' %>
+      <%= task_form.hidden_field :assigner_id, value: current_user.id %>
+      <%= task_form.link_to_remove "Удалить эту задачу" %>
+    <% end %>
+  <% end %>
+  <p><%= f.link_to_add "Добавить задачу", :tasks %></p>
+  <%= f.button :submit %>
+<% end %>

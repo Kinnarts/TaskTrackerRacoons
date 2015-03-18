@@ -1,0 +1,26 @@
+<table class="table table-bordered">
+  <caption>Список всех проектов</caption>
+  <thead>
+    <tr>
+      <td>Номер проекта</td>
+      <td>Название проекта</td>
+      <td>Отвественный за проект</td>
+      <td>Действия</td>
+    </tr>
+  </thead>
+  <tbody>
+    <% @projects.each do |p| %>
+      <tr>
+        <td><%= p.id %></td>
+        <td><%= link_to p.name, project_path(p) %></td>
+        <td><%= p.owner.email %></td>
+        <td>
+          <%= link_to 'Редактировать', edit_project_path(p) %>
+          |
+          <%= link_to 'Удалить', project_path(p), method: :delete, data: { confirm: 'Вы уверены?' } %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+<p><%= link_to 'Новый проект', new_project_path, class: 'btn' if current_user.admin %></p>

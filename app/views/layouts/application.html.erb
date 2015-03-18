@@ -19,11 +19,13 @@
           <%= link_to 'TaskTrackerRacoons', root_path, class: "navbar-brand" %>
           <div class="navbar-collapse collapse navbar-responsive-collapse">
             <ul class="nav navbar-nav navbar-right">
+              <li><%= link_to 'Список пользователей', users_path %></li>
+              <li><%= link_to 'Список проектов', projects_path %></li>
               <% if user_signed_in? %>
                 <li><%= link_to 'Личный кабинет', edit_user_registration_path(current_user) %></li>
-                <li><%= link_to 'Выйти', destroy_user_session_path, :method => :delete %></li>
+                <li><%= link_to 'Выйти', destroy_user_session_path, method: :delete %></li>
               <% else %>
-                <li><%= link_to 'Войти', new_user_session_path %></li>
+                <li><%= link_to 'Войти', new_user_session_path, method: :get %></li>
                 <li><%= link_to 'Зарегистрироваться', new_user_registration_path %></li>
               <% end %>
             </ul>
