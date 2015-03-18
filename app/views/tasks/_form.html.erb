@@ -2,6 +2,7 @@
   <%= f.input :title, label: 'Название задачи' %>
   <%= f.input :describe, as: :text, label: 'Описание задачи' %>
   <%= f.input :tag_list, label: 'Теги (разделите запятыми)' %>
+  <%= f.input :rating, label: 'Оцените выполнение задачи' if task.state == "finished" %>
   <%= f.association :executor, label_method: :email, label: 'Выберите исполнителя' %>
   <%= f.hidden_field :assigner_id, value: current_user.id %>
   <%= f.button :submit %>
