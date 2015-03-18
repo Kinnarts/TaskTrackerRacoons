@@ -57,6 +57,6 @@ class ProjectsController < ApplicationController
   end
 
   def task_params
-    [:id, :title, :describe, :executor_id, :assigner_id, :_destroy]
+    [:id, :title, :describe, :executor_id, :assigner_id, :_destroy, :state]
   end
 end

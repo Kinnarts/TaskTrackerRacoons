@@ -11,17 +11,31 @@
       <td>Описание задачи</td>
       <td>Исполнитель</td>
       <td>Назначивший</td>
+      <td>Текущий статус и его изменение</td>
       <td>Действия</td>
     </tr>
   </thead>
   <tbody>
-    <% @project.tasks.each do |t| %>
+    <% @project.tasks.each do |task| %>
       <tr>
-        <td><%= t.id %></td>
-        <td><%= t.title %></td>
-        <td><%= t.describe %></td>
-        <td><%= t.executor.email %></td>
-        <td><%= t.assigner.email %></td>
+        <td><%= task.id %></td>
+        <td><%= link_to task.title, project_task_path(@project, task) %></td>
+        <td><%= task.describe %></td>
+        <td><%= task.executor.email %></td>
+        <td><%= task.assigner.email %></td>
+        <td>
+          <h4>"<%= task.state %>"</h4></br>
+          <%= form_tag set_state_event_path do %>
+            <%= label_tag("Выберите действие") %>
+            <%= select_tag :state_event, options_for_select(task.state_events(&:to_s)) %>
+            <%= hidden_field_tag :id, task.id %>
+            <button>Изменить</button>
+          <% end %>
+        <td>
+          <%= link_to 'Редактировать', edit_project_task_path(@project, task) %>
+          |
+          <%= link_to 'Удалить', project_task_path(@project, task), method: :delete, data: { confirm: 'Вы уверены?' } %>
+        </td>
       </tr>
     <% end %>
   </tbody>

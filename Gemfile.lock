@@ -181,6 +181,7 @@ GEM
       actionpack (>= 3.0)
       activesupport (>= 3.0)
       sprockets (>= 2.8, < 4.0)
+    state_machine (1.2.0)
     therubyracer (0.12.1)
       libv8 (~> 3.16.14.0)
       ref
@@ -230,6 +231,7 @@ DEPENDENCIES
   shoulda-matchers
   simple_form
   spring
+  state_machine
   therubyracer
   turbolinks
   twitter-bootstrap-rails
