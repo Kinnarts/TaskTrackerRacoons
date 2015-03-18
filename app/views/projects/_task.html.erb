@@ -5,6 +5,7 @@
   <div class="panel-body">
     <p><%= task.describe %></p>
     <p>Tags: <%= task.tag_list %></p>
+    <p>Оценка: <%= task.rating if task.rating %></p>
     <%= link_to 'Редактировать', edit_project_task_path(@project, task) %>
     |
     <%= link_to 'Удалить', project_task_path(@project, task), method: :delete, data: { confirm: 'Вы уверены?' } %>

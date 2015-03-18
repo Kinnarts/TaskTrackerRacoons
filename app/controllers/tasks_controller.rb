@@ -46,7 +46,7 @@ class TasksController < ApplicationController
   private
 
   def task_params
-    params.require(:task).permit(:title, :describe, :executor_id, :assigner_id, :tag_list)
+    params.require(:task).permit(:title, :describe, :executor_id, :assigner_id, :tag_list, :rating)
   end
 
   def find_project
